@@ -146,7 +146,7 @@ body.game3 {
 
 /*game5.html*/
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
     background-color: #f0f0f0;
     height: 100vh;
@@ -233,7 +233,50 @@ button {
     margin-top: 20px;
 }
 
+/*Game8.html*/
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #87CEEB; 
+    margin: 0;
+}
 
+#startButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3498db; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#gameContainer {
+    display: none;
+    position: relative;
+}
+
+.plane {
+    position: absolute;
+    bottom: 50px;
+    height: 50px; 
+}
+
+#building {
+    position: absolute;
+    bottom: 0;
+    width: 50px; 
+    height: 200px; 
+    background-color: #575757; 
+}
+
+#result {
+    display: none;
+    font-size: 24px;
+    color: #e74c3c; 
+    margin-bottom: 10px;
+}
 
 /* Keyframes */
 @keyframes vortexAnimation {
@@ -253,4 +296,3 @@ button {
         transform: translateY(-100px);
     }
 }
-

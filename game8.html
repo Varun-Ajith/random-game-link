@@ -1,0 +1,65 @@
+<!-- game.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plane Crash Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button id="startButton" onclick="startGame()">Start Game</button>
+
+    <div id="gameContainer" style="display: none;">
+        <img src="userplane.png" id="userPlane" class="plane">
+        <div id="building"></div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        var userPlane = document.getElementById('userPlane');
+        var building = document.getElementById('building');
+        var resultMessage = document.getElementById('result');
+
+        var userPlanePosition = -600;
+
+        function startGame() {
+            document.getElementById('startButton').style.display = 'none';
+            document.getElementById('gameContainer').style.display = 'block';
+            movePlane();
+        }
+
+        function movePlane() {
+            var moveInterval = setInterval(function () {
+                userPlanePosition += 10;
+                userPlane.style.left = userPlanePosition + 'px';
+                checkCollision();
+
+                // Change the condition to stop at the center
+                if (userPlanePosition + userPlane.clientWidth / 2 >= window.innerWidth / 2) {
+                    clearInterval(moveInterval);
+                    showResult();
+                }
+            }, 100);
+        }
+
+        function checkCollision() {
+            if (
+                userPlanePosition + userPlane.clientWidth >= window.innerWidth / 2 &&
+                userPlanePosition <= window.innerWidth / 2 + building.clientWidth
+            ) {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            building.innerHTML = '<img src="explosion.gif" alt="Explosion">';
+            resultMessage.innerText = '---Tuist !!';
+            resultMessage.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

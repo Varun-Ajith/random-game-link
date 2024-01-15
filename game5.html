@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Pop Game</title>
+    <title>Don't disturb</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,28 +13,31 @@
     <div id="popupWord"></div>
 
     <script>
-        var words = ["Manga tholvii", "Please, pokanam", "Shalyam", "Haaa", "Chumma iride"];
+        var words = ["Eda!", "Please", "Shalyapeduthale", "HAAAA", "Ninodale paranje", "Dei", "Venda", "Chumma kalipikale", "Nee Lokathin bhaaram", "Fonda!", "Bye"];
+        var currentWordIndex = 0;
 
-    function getRandomWord() {
-        var randomIndex = Math.floor(Math.random() * words.length);
-        return words[randomIndex];
-    }
+        function getNextWord() {
+            if (currentWordIndex >= words.length) {
+                currentWordIndex = 0; // Reset index if all words are shown
+            }
+            return words[currentWordIndex++];
+        }
 
-    function showPopup() {
-        var popupWord = document.getElementById("popupWord");
-        var randomWord = getRandomWord();
+        function showPopup() {
+            var popupWord = document.getElementById("popupWord");
+            var nextWord = getNextWord();
 
-        popupWord.innerText = randomWord;
-        popupWord.style.display = "block";
+            popupWord.innerText = nextWord;
+            popupWord.style.display = "block";
 
-        setTimeout(function () {
-            popupWord.style.display = "none";
-        }, 1000); 
-    }
+            setTimeout(function () {
+                popupWord.style.display = "none";
+            }, 1000); 
+        }
 
-    document.addEventListener("touchstart", function () {
-        showPopup();
-    });
+        document.addEventListener("touchstart", function () {
+            showPopup();
+        });
     </script>
 
 </body>

@@ -34,10 +34,24 @@ body.game1 {
         padding: 8px 12px;
     }
 
-    #myVideo {
-        max-width: 50%; 
-        height: auto;  
+    #snake-container {
+        width: 100%; /* Adjust the width as needed */
+        height: auto;
+        position: relative;
+        overflow: hidden;
     }
+
+    #snake {
+        /* Adjust styles for the snake */
+        width: 50px;
+        height: 50px;
+    }
+
+    #snake-gif {
+        max-width: 100%;
+        height: auto;
+    }
+  
 
 
 }

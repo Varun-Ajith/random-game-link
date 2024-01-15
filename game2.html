@@ -3,18 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colour changing background</title>
+    <title>Snake</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button onclick="startGame()">Start Game</button>
+    <div id="snake"></div>
+    <img id="snake-gif" src="video-6.gif" alt="Snake GIF">
+
     <script>
-        function changeBackgroundColor() {
-            var colors = ['#ff0000', '#00ff00', '#0000ff', 'ffff00', '#ff00ff', '00ffff'];
-            var randomColor = colors[Math.floor(Math.random()*colors.length)];
-            document.body.style.backgroundColor = randomColor;
+        function startGame() {
+            var startButton = document.querySelector('button');
+            startButton.style.display = 'none';
+
+            var snake = document.getElementById('snake');
+            moveSnake(snake, 12, function () {
+                var snakeGif = document.getElementById('snake-gif');
+                snakeGif.style.display = 'block';
+            });
         }
 
-        setInterval(changeBackgroundColor, 500);
+        function moveSnake(snake, moves, callback) {
+            var currentPosition = 0;
+            var interval = setInterval(function () {
+                snake.style.left = currentPosition + 'px';
+                currentPosition += 20; 
+
+                if (currentPosition > window.innerWidth) {
+                    clearInterval(interval);
+                    if (callback) {
+                        callback();
+                    }
+                }
+            }, 100);
+        }
     </script>
 </body>
 </html>

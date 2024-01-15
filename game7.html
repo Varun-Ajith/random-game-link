@@ -1,0 +1,27 @@
+<!-- game.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes or No Question Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Yes or No Question Game</h1>
+        <p id="question"></p>
+        <button onclick="answerQuestion('Yes')">Yes</button>
+        <button onclick="answerQuestion('No')">No</button>
+        <div id="response"></div>
+    </div>
+    <div id="fireworks-container">
+        <div id="you-win"></div>
+    </div>
+    <div id="popup-container">
+        <div id="popup-word"></div>
+        <audio id="audio" src="song.mp3"></audio>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

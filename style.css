@@ -43,13 +43,13 @@ button {
     font-size: 16px;
     cursor: pointer;
     background-color: #c7baa9;
-    color: #fff;
+    color: #6e6969;
     border: none;
     border-radius: 20px;
 }
 
 button:hover {
-    color: grey;
+    color: rgb(43, 53, 196);
     text-decoration: underline;
     text-underline-offset: 1rem;
     text-decoration-color: rgb(181, 181, 181);
@@ -237,7 +237,7 @@ button {
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
-    background-color: #87CEEB; 
+    background-color: #525252; 
     margin: 0;
 }
 
@@ -268,14 +268,14 @@ body {
     bottom: 0;
     width: 50px; 
     height: 200px; 
-    background-color: #575757; 
+    background-color: #ffffff; 
 }
 
 #result {
     display: none;
-    font-size: 24px;
+    font-size: 100px;
     color: #e74c3c; 
-    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 /* Keyframes */

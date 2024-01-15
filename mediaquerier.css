@@ -1,3 +1,17 @@
+body.game1 {
+    .round-button {
+        width: 80px;
+        height: 80px;
+    }
+
+    #myVideo {
+        max-width: 100%; 
+        height: auto;  
+        max-height: 100vh;
+    }
+
+}
+
 @media only screen and (max-width: 600px) {
     body {
         font-size: 14px;
@@ -10,10 +24,21 @@
         margin-bottom: 10px;
     }
 
+    .round-button {
+        width: 25px;
+        height: 25px;
+    }
+
     button {
         font-size: 14px;
         padding: 8px 12px;
     }
+
+    #myVideo {
+        max-width: 50%; 
+        height: auto;  
+    }
+
 
 }
 

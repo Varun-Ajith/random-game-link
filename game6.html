@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="script.js"></script>
+    <script>
+        function createBalloon() {
+            var balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * (window.innerWidth-50) +'px';
+            balloon.style.top = Math.random() * (window.innerHeight-70) + 'px';
+            balloon.onclick = function() {
+                popBalloon(balloon);
+            };
+            document.body.appendChild(balloon);
+        }
+
+        function popBalloon(balloon) {
+            balloon.style.display = 'none';
+            setTimeout(function() {
+                balloon.style.left = Math.random() * (window.innerWidth-50) +'px';
+                balloon.style.top = Math.random() * (window.innerHeight-70) + 'px';
+                balloon.style.display = 'block';
+            }, 1000);
+        }
+        setInterval(createBalloon, 5000);
+    </script>
 </body>
 </html>

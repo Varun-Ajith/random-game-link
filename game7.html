@@ -22,6 +22,80 @@
         <div id="popup-word"></div>
         <audio id="audio" src="song.mp3"></audio>
     </div>
-    <script src="script.js"></script>
+    <script>
+        var questions = [
+        "Are you Okay?",
+        "You sure?",
+        "Have you ever thought you were supposed to be somewhere else?",
+        "Is your laugh more like a snort?",
+        "Do you think squirrels have secret meetings in abandoned pizza boxes?",
+        "Is water wet?",
+        "Can fish fly?",
+        "Are bananas bluck?",
+        "Is the sun cold?",
+        "Do you like MJ?"
+        ];
+
+        var currentQuestionIndex = 0;
+        var questionCount = 0;
+
+        function startGame() {
+            displayQuestion();
+        }
+
+        function displayQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                document.getElementById('question').innerText = questions[currentQuestionIndex];
+                questionCount++;
+            } else {
+                endGame();
+            }
+
+            if (questionCount === 10) {
+                setTimeout(showPopupWord, 2000); // Delayed pop-up after 2 seconds
+            }
+        }
+
+        function answerQuestion(userAnswer) {
+            if (currentQuestionIndex < questions.length) {
+                var correctAnswer = "Yes";
+                var response = userAnswer === correctAnswer ? "OKAYY!" : "OKAY?";
+                document.getElementById('response').innerText = response;
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        }
+
+        function endGame() {
+            document.getElementById('fireworks-container').style.display = 'flex';
+            document.getElementById('you-win').style.fontSize = '48px';
+            createFireworks();
+        }
+
+        function createFireworks() {
+            var container = document.getElementById('fireworks-container');
+
+            for (var i = 0; i < 100; i++) {
+                var firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = Math.random() * window.innerWidth + 'px';
+                container.appendChild(firework);
+            }
+        }
+
+        function showPopupWord() {
+            var popupContainer = document.getElementById('popup-container');
+            var popupWord = document.getElementById('popup-word');
+            var audio = document.getElementById('audio');
+
+            var word = "Congratulations!";
+            popupWord.innerText = word;
+
+            popupContainer.style.display = 'block';
+            audio.play();
+        }
+
+        window.onload = startGame;
+    </script>
 </body>
 </html>

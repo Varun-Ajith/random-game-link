@@ -7,6 +7,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="script.js"></script>
+    <script>
+        var emojis = ['😄', '😀'];
+
+        function startGame() {
+            createTogglingEmoji();
+        }
+
+        function createTogglingEmoji() {
+            var emoji = document.createElement('div');
+            emoji.className = 'emoji';
+            emoji.innerHTML = emojis[0];
+            emoji.style.left = Math.random() * (window.innerWidth - 30) + 'px';
+            emoji.style.top = Math.random() * (window.innerHeight - 30) + 'px';
+
+            emoji.addEventListener('click', function () {
+                toggleEmoji(emoji);
+            });
+
+            document.body.appendChild(emoji);
+        }
+
+        function toggleEmoji(emojiElement) {
+            var currentEmojiIndex = emojis.indexOf(emojiElement.innerHTML);
+            var newEmojiIndex = (currentEmojiIndex + 1) % emojis.length;
+            emojiElement.innerHTML = emojis[newEmojiIndex];
+        }
+
+        window.onload = function () {
+            for (var i = 0; i < 5; i++) {
+                createTogglingEmoji();
+            }
+        };
+    </script>
 </body>
 </html>

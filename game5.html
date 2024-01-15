@@ -12,7 +12,30 @@
 
     <div id="popupWord"></div>
 
-    <script src="script.js"></script>
+    <script>
+        var words = ["Manga tholvii", "Please, pokanam", "Shalyam", "Haaa", "Chumma iride"];
+
+    function getRandomWord() {
+        var randomIndex = Math.floor(Math.random() * words.length);
+        return words[randomIndex];
+    }
+
+    function showPopup() {
+        var popupWord = document.getElementById("popupWord");
+        var randomWord = getRandomWord();
+
+        popupWord.innerText = randomWord;
+        popupWord.style.display = "block";
+
+        setTimeout(function () {
+            popupWord.style.display = "none";
+        }, 1000); 
+    }
+
+    document.addEventListener("touchstart", function () {
+        showPopup();
+    });
+    </script>
 
 </body>
 </html>

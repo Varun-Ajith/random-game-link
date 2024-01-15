@@ -8,6 +8,19 @@
 </head>
 <body>
     <div id="clickButton" onclick="moveButton()">Ivide</div>
-    <script src="script.js"></script>
+    <script>
+        function moveButton() {
+            var button = document.getElementById('clickButton');
+
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight;
+
+            var newX = Math.random() * (windowWidth - button.offsetWidth);
+            var newY = Math.random() * (windowHeight - button.offsetHeight);
+
+            button.style.left = newX +'px';
+            button.style.top = newY + 'px';
+        }
+    </script>
 </body>
 </html>

@@ -1,63 +1,43 @@
-<!-- game.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plane Crash Game</title>
+    <title>Guess the Shadow Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <button id="startButton" onclick="startGame()">Start Game</button>
-
-    <div id="gameContainer" style="display: none;">
-        <img src="userplane.png" id="userPlane" class="plane">
-        <div id="building"></div>
-        <div id="result"></div>
+    <div id="game-container">
+        <img id="shadow-image" src="" alt="Shadow" style="width: 100%; height: 100%;">
+        <div id="options-container" style="display: none;">
+            <div class="option" onclick="checkAnswer(0)">Mohanlal</div>
+            <div class="option" onclick="checkAnswer(1)">Anoop Menon</div>
+        </div>
     </div>
 
-    <script>
-        var userPlane = document.getElementById('userPlane');
-        var building = document.getElementById('building');
-        var resultMessage = document.getElementById('result');
+    <div id="start-button" onclick="startGame()">Guess</div>
 
-        var userPlanePosition = -600;
+    <script>
+        const imageOptions = [
+            { shadowImage: "shadow1.jpg", revealImage: "reveal1.jpg", options: ["Mohanlal", "Anoop Menon"] },
+        ];
 
         function startGame() {
-            document.getElementById('startButton').style.display = 'none';
-            document.getElementById('gameContainer').style.display = 'block';
-            movePlane();
+            document.getElementById('start-button').style.display = 'none';
+            document.getElementById('options-container').style.display = 'flex';
+            const randomIndex = Math.floor(Math.random() * imageOptions.length);
+            const selectedImage = imageOptions[randomIndex];
+            document.getElementById('shadow-image').src = selectedImage.shadowImage;
+            document.getElementById('options-container').innerHTML = selectedImage.options.map((option, index) =>
+                `<div class="option" onclick="checkAnswer(${index})">${option}</div>`
+            ).join('');
         }
 
-        function movePlane() {
-            var moveInterval = setInterval(function () {
-                userPlanePosition += 10;
-                userPlane.style.left = userPlanePosition + 'px';
-                checkCollision();
-
-                // Change the condition to stop at the center
-                if (userPlanePosition + userPlane.clientWidth / 2 >= window.innerWidth / 2) {
-                    clearInterval(moveInterval);
-                    showResult();
-                }
-            }, 100);
-        }
-
-        function checkCollision() {
-            if (
-                userPlanePosition + userPlane.clientWidth >= window.innerWidth / 2 &&
-                userPlanePosition <= window.innerWidth / 2 + building.clientWidth
-            ) {
-                showResult();
-            }
-        }
-
-        function showResult() {
-            building.innerHTML = '<img src="explosion.gif" alt="Explosion">';
-            resultMessage.innerText = '-------Tuist !!';
-            resultMessage.style.display = 'block';
+        function checkAnswer(optionIndex) {
+            const selectedImage = imageOptions.find(img => img.shadowImage === document.getElementById('shadow-image').src);
+            const revealImage = selectedImage.revealImage;
+            document.getElementById('shadow-image').src = revealImage;
+            document.getElementById('options-container').style.display = 'none';
         }
     </script>
 

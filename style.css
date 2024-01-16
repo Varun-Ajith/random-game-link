@@ -17,8 +17,8 @@ html  {
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background-color: #a3a4a5;
+    color: #ffffff;
     line-height: 1.6;
 }
 
@@ -29,12 +29,12 @@ body {
 
 h1 {
     font-size: 2em;
-    color: #ffffff;
+    color: #474747;
     margin-bottom: 20px;
 }
 
 p {
-    color: #ffffff;
+    color: #202020;
 }
 button {
     display: block;
@@ -42,37 +42,37 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #c7baa9;
-    color: #6e6969;
+    background-color: #8a8a8a;
+    color: #a8a4a4;
     border: none;
     border-radius: 20px;
 }
 
 button:hover {
-    color: rgb(43, 53, 196);
+    color: rgb(81, 91, 224);
     text-decoration: underline;
     text-underline-offset: 1rem;
-    text-decoration-color: rgb(181, 181, 181);
+    text-decoration-color: rgb(56, 56, 56);
 }
 /*game1.html*/
 body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    background-color: #000000;
+    background-color: #ffffff;
     padding: 20px;
 }
 
 .round-button {
     width: 100px;
     height: 100px;
-    background-color: #ffffff;
+    background-color: #632e2e;
     border-radius: 50%;
     margin: 20px auto;
     cursor: pointer;
 }
 
 .round-button:hover {
-    color: grey;
+    color: rgb(170, 140, 140);
     text-decoration: underline;
     text-underline-offset: 1rem;
     text-decoration-color: rgb(181, 181, 181);
@@ -87,7 +87,7 @@ body {
 body.game2 {
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     padding: 20px;
 }
 
@@ -95,8 +95,8 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #3498db;
-    color: #fff;
+    background-color: #cae0ee;
+    color: #cfcdcd;
     border: none;
     border-radius: 5px;
     margin-top: 20px;
@@ -106,7 +106,7 @@ button {
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: #003d19;
+    background-color: #012e14;
 }
 
 #snake-gif {
@@ -138,8 +138,8 @@ body.game3 {
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #2f2f30;
-    color: #fff;
+    background-color: #7a7a7a;
+    color: #a7a6a6;
     border: none;
     border-radius: 5px;
 }
@@ -148,7 +148,7 @@ body.game3 {
 body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     height: 100vh;
     margin: 0;
     display: flex;
@@ -171,7 +171,7 @@ body.game6 {
     position: absolute;
     width: 50px;
     height: 70px;
-    background-color: #2600fc;
+    background-color: #5f49db;
     border-radius: 50%;
     cursor: pointer;
     animation: balloonAnimation 3s linear infinite;
@@ -203,7 +203,7 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #808080;
+    background-color: #fafafa;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -218,7 +218,7 @@ button {
     transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 20px;
-    border: 2px solid #252525;
+    border: 2px solid #888686;
     border-radius: 5px;
     text-align: center;
 }
@@ -234,48 +234,41 @@ button {
 }
 
 /*Game8.html*/
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
-    background-color: #525252; 
-    margin: 0;
 }
 
-#startButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #3498db; 
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-#gameContainer {
-    display: none;
+#game-container {
     position: relative;
+    width: 400px;
+    height: 300px;
+    margin: auto;
+    overflow: hidden;
 }
 
-.plane {
-    position: absolute;
-    bottom: 50px;
-    height: 50px; 
-}
-
-#building {
-    position: absolute;
-    bottom: 0;
-    width: 50px; 
-    height: 200px; 
-    background-color: #ffffff; 
-}
-
-#result {
-    display: none;
-    font-size: 100px;
-    color: #e74c3c; 
+#options-container {
+    display: flex;
+    justify-content: space-around;
     margin-top: 20px;
+    border-radius: 6px;
+}
+
+.option {
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    color: #a57a42;
+}
+
+#start-button {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    display: block;
+    margin: auto;
 }
 
 /* Keyframes */

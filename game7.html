@@ -9,10 +9,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Yes or No Question Game</h1>
+        <h1>Q-G</h1>
         <p id="question"></p>
-        <button onclick="answerQuestion('Yes')">Yes</button>
-        <button onclick="answerQuestion('No')">No</button>
+        <div id="options"></div>
         <div id="response"></div>
     </div>
     <div id="fireworks-container">
@@ -24,16 +23,46 @@
     </div>
     <script>
         var questions = [
-        "Are you Okay?",
-        "You sure?",
-        "Have you ever thought you were supposed to be somewhere else?",
-        "Is your laugh more like a snort?",
-        "Do you think squirrels have secret meetings in abandoned pizza boxes?",
-        "Is water wet?",
-        "Can fish fly?",
-        "Are bananas bluck?",
-        "Is the sun cold?",
-        "Do you like MJ?"
+            { 
+                question: "I speak without a mouth and hear without ears.",
+                options: ['A dream', 'An echo']
+            },
+            {
+                question: "What has keys but can't open locks?",
+                options: ['A type writer', 'a Piano']
+            },
+            {
+                question: " The more you cut me, the bigger I grow. What am I?",
+                options: ['Hole', 'Tree']
+            },
+            {
+                question: "I can be cracked, made, told, and played. What am I?",
+                options: ['Joke', 'Code']
+            },
+            {
+                question: " What belongs to you but other people use it more than you do?",
+                options: ['Your name', 'Your voicex']
+            },
+            {
+                question: "What has a face and two hands but no arms or legs?",
+                options: ['Clock', 'Mask']
+            },
+            {
+                question: "The more you take, the more you leave behind. What am I?",
+                options: ['Footprint', 'Memories']
+            },
+            {
+                question: "I cry without eyes. Wherever I go, darkness follows me. What am I?",
+                options: ['Cloud', 'Night']
+            },
+            {
+                question: "What has keys but can't open locks and has space but no room?",
+                options: ['Telescope', 'Computer_key']
+            },
+            {
+                question: "Do you like MJ",
+                options: ['Yes', 'No']
+            },
         ];
 
         var currentQuestionIndex = 0;
@@ -45,20 +74,34 @@
 
         function displayQuestion() {
             if (currentQuestionIndex < questions.length) {
-                document.getElementById('question').innerText = questions[currentQuestionIndex];
+                var currentQuestion = questions[currentQuestionIndex];
+                document.getElementById('question').innerText = currentQuestion.question;
+                document.getElementById('options').innerHTML = '';
+                for (var i = 0; i < currentQuestion.options.length; i++) {
+                    var button = document.createElement('button');
+                    button.innerText = currentQuestion.options[i];
+                    button.onclick = function(answer) {
+                        return function() {
+                            answerQuestion(answer);
+                        };
+                    }(currentQuestion.options[i]);
+
+                    document.getElementById('options').appendChild(button);
+                }
+
                 questionCount++;
             } else {
                 endGame();
             }
 
             if (questionCount === 10) {
-                setTimeout(showPopupWord, 2000); // Delayed pop-up after 2 seconds
+                setTimeout(showPopupWord, 500); // Delayed pop-up after 2 seconds
             }
         }
 
         function answerQuestion(userAnswer) {
             if (currentQuestionIndex < questions.length) {
-                var correctAnswer = "Yes";
+                var correctAnswer = questions[currentQuestionIndex].options[0];
                 var response = userAnswer === correctAnswer ? "OKAYY!" : "OKAY?";
                 document.getElementById('response').innerText = response;
                 currentQuestionIndex++;
@@ -88,7 +131,7 @@
             var popupWord = document.getElementById('popup-word');
             var audio = document.getElementById('audio');
 
-            var word = "Congratulations!";
+            var word = "Poi Pani edkada!";
             popupWord.innerText = word;
 
             popupContainer.style.display = 'block';

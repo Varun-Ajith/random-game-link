@@ -233,43 +233,7 @@ button {
     margin-top: 20px;
 }
 
-/*Game8.html*/
 
-body {
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-}
-
-#game-container {
-    position: relative;
-    width: 400px;
-    height: 300px;
-    margin: auto;
-    overflow: hidden;
-}
-
-#options-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-    border-radius: 6px;
-}
-
-.option {
-    padding: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    color: #a57a42;
-}
-
-#start-button {
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    display: block;
-    margin: auto;
-}
 
 /* Keyframes */
 @keyframes vortexAnimation {

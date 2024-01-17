@@ -16,7 +16,7 @@ html  {
 }
 
 body {
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif; /* Updated font-family */
     background-color: #2c3e50;
     color: #ecf0f1;
     line-height: 1.6;
@@ -29,12 +29,12 @@ body {
 
 h1 {
     font-size: 2em;
-    color: #7f8c8d; /* Updated heading color for grey background */
+    color: #7f8c8d; 
     margin-bottom: 20px;
 }
 
 p {
-    color: #95a5a6; /* Updated paragraph color for grey background */
+    color: #95a5a6; 
 }
 
 button {
@@ -47,16 +47,18 @@ button {
     color: #ffffff;
     border: none;
     border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s; /* Added transition */
 }
 
 button:hover {
+    background-color: #2980b9;
     color: #34495e;
     text-decoration: underline;
     text-underline-offset: 1rem;
     text-decoration-color: #383838;
 }
 
-/*game1.html*/
+/*Video showing game*/
 body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
@@ -84,43 +86,7 @@ body {
     display: none;
 }
 
-/*game2.html*/
-body.game2 {
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    background-color: #ffffff;
-    padding: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #3498db;
-    color: #ecf0f1;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-#snake {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #2ecc71;
-}
-
-#snake-gif {
-    display: none;
-    position: absolute;
-    width: 100%;
-    height: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/*game3.html*/
+/*emoji game*/
 body.game3 {
     margin: 0;
     overflow: hidden;
@@ -132,7 +98,7 @@ body.game3 {
     cursor: pointer;
 }
 
-/*game4.html*/
+/*click me game*/
 #clickButton {
     position: absolute;
     padding: 10px;
@@ -144,7 +110,7 @@ body.game3 {
     border-radius: 5px;
 }
 
-/*game5.html*/
+/*Donot disturb game*/
 body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
@@ -162,7 +128,7 @@ body {
     color: #000000;
 }
 
-/*game6.html*/
+/*Pop the balloon game*/
 body.game6 {
     background-color: #ffffff;
 }
@@ -177,7 +143,7 @@ body.game6 {
     animation: balloonAnimation 3s linear infinite;
 }
 
-/*QnA*/
+/*QnA game*/
 body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
@@ -233,7 +199,85 @@ button {
     margin-top: 20px;
 }
 
+/*Hangman*/
+
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 20px;
+    background-color: #f0f0f0;
+  }
+
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #game-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  #word-container {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: black;
+  }
+
+  #userInput {
+    font-size: 16px;
+    padding: 5px;
+  }
+
+  #submit-btn {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  #submit-btn:hover {
+    background-color: #2980b9;
+  }
+
+  #result {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  #hangman-image {
+    width: 200px;
+    margin-top: 20px;
+    display: none;
+  }
+
+  #restart-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+
+  #restart-btn:hover {
+    background-color: #c0392b;
+  }
+
 /* Keyframes */
+
 @keyframes vortexAnimation {
     0% {
         transform: rotate(0deg);

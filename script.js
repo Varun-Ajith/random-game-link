@@ -6,7 +6,8 @@ function launchRandomGames() {
         'game4.html',
         'game5.html',
         'game6.html',
-        'game7.html'
+        'game7.html',
+        'game8.html'
     ];
 
     var randomIndex = Math.floor(Math.random() * games.length);

@@ -3,40 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4em;
+            animation: scaleInOut 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes scaleInOut {
+            0%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Media query for smaller screens (phones) */
+        @media (max-width: 768px) {
+            body {
+                font-size: 2.5em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <button onclick="startGame()">Start Game</button>
-    <div id="snake"></div>
-    <img id="snake-gif" src="video-6.gif" alt="Snake GIF">
-
     <script>
-        function startGame() {
-            var startButton = document.querySelector('button');
-            startButton.style.display = 'none';
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
 
-            var snake = document.getElementById('snake');
-            moveSnake(snake, 12, function () {
-                var snakeGif = document.getElementById('snake-gif');
-                snakeGif.style.display = 'block';
-            });
+            document.body.innerHTML = `<h1>${hours}:${minutes}:${seconds}</h1>`;
         }
 
-        function moveSnake(snake, moves, callback) {
-            var currentPosition = 0;
-            var interval = setInterval(function () {
-                snake.style.left = currentPosition + 'px';
-                currentPosition += 20; 
-
-                if (currentPosition > window.innerWidth) {
-                    clearInterval(interval);
-                    if (callback) {
-                        callback();
-                    }
-                }
-            }, 100);
-        }
+        setInterval(updateClock, 1000);
+        updateClock(); 
     </script>
 </body>
 </html>

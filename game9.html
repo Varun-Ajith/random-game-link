@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truth or Dare Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Truth or Dare Game</h1>
+  <p>Texxt me truth and do the dare to urself</p>
+
+  <button onclick="generateRandomTruth()">Generate Truth</button>
+  <button onclick="generateRandomDare()">Generate Dare</button>
+
+  <div id="output"></div>
+
+  <script>
+    function generateRandomTruth() {
+      var truths = [
+            "What is a secret you've never shared because it's too painful? ",
+            "Have you ever regretted a major decision in your life?",
+            "What is the biggest lie you've ever told someone you care about?",
+            "If you could change one event from your past, what would it be?",
+            "What is a habit or behavior you wish you could quit?",
+            "Describe a moment in your life when you felt truly vulnerable.",
+            "Have you ever stolen something? What was it, and why did you do it?",
+            "What is a decision you regret making, and why?",
+            "Share a personal experience that changed your perspective on life.",
+            "If you could know one truth about your future, what would it be?",
+            "What is the most challenging aspect of your life right now?",
+            "Have you ever been in love? If so, what was the most difficult part?",
+            "What is a misconception that people often have about you?",
+            "If you could apologize to someone from your past, who would it be and why?",
+            "What is a dream or goal you've never shared because you fear judgment?",
+            "What is your most significant personal struggle, and how do you cope with it?"
+      ];
+
+      displayRandomTask(truths);
+    }
+
+    function generateRandomDare() {
+      var dares = [
+            "Share a personal experience that has changed your perspective on life.",
+            "Write and share a letter to someone you've lost touch with, expressing your true feelings.",
+            "Perform a random act of kindness and share the experience with the group.",
+            "Do something that scares you but will ultimately benefit your personal growth",
+            "Send a text to your crush or significant other expressing your love in a unique way.",
+            "Go outside and perform a funny dance for one minute.",
+            "Write a fictional short story about a strange and humorous situation.",
+            "Do your best stand-up comedy routine for two minutes.",
+            "Share a bizarre fact about yourself that no one knows.",
+            "Send a message to your boss or coworker complimenting them on something specific.",
+            "Draw a quick, funny doodle on your face using a washable marker.",
+            "Post a joke on your social media account for everyone to see.",
+            "Share an unpopular opinion you have on a popular topic.",
+            "Talk in rhymes for the next five minutes.",
+            "Share an uplifting and positive message with the near one."
+      ];
+
+      displayRandomTask(dares);
+    }
+
+    function displayRandomTask(tasks) {
+      var randomIndex = Math.floor(Math.random() * tasks.length);
+      var randomTask = tasks[randomIndex];
+
+      document.getElementById("output").innerText = randomTask;
+    }
+  </script>
+
+</body>
+</html>

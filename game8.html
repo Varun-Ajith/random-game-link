@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Hangman Game</h1>
+        <div id="game-container">
+          <div id="word-container"></div>
+          <p>Enter a letter: <input type="text" id="userInput" maxlength="1"></p>
+          <button id="submit-btn" onclick="checkLetter()">Submit Letter</button>
+          <p id="result"></p>
+          <img id="hangman-image" src="" alt="Hangman">
+          <button id="restart-btn" onclick="startGame()">Restart Game</button>
+        </div>
+    </div>
+    
+    <script>
+        const movies = [
+            "Avatar", "Titanic", "Inception", "Jurassic Park", "Star Wars",
+            "Forrest Gump", "The Godfather", "The Shawshank Redemption", 
+            "The Matrix", "Casablanca", "Gone with the Wind", "Pulp Fiction",
+            "The Dark Knight", "Schindler's List", "Fight Club", "The Silence of the Lambs",
+            "The Lord of the Rings: The Fellowship of the Ring", "The Green Mile",
+            "The Wizard of Oz", "The Lion King", "Braveheart", "The Great Gatsby",
+            "The Social Network", "The Graduate", "The Sound of Music", "The Big Lebowski",
+            "Gladiator", "The Departed", "Goodfellas", "The Shining", "Eternal Sunshine of the Spotless Mind",
+            "Inglourious Basterds", "The Breakfast Club", "Casino Royale", "The Terminator",
+            "The Princess Bride", "The Grand Budapest Hotel", "Raiders of the Lost Ark",
+            "Spirited Away", "Crouching Tiger, Hidden Dragon", "The Revenant", "The Hurt Locker",
+            "A Clockwork Orange", "American Psycho", "The Exorcist", "The Seven Samurai",
+            "Memento", "Amelie"];
+    
+        const hangmanImages = [
+          "image0.png",
+          "image1.png",
+          "image2.png",
+          "image3.png",
+          "image4.png",
+          "image5.png",
+          "image6.png"
+        ];
+    
+        let selectedMovie = "";
+        let displayWord = [];
+        let remainingAttempts = 6;
+
+        function startGame() {
+            selectedMovie = getRandomMovie();
+            displayWord = selectedMovie.split('').map(char => (char === ' ' ? ' ' : '_'));
+            remainingAttempts = 6;
+
+            updateDisplay();
+            resetHangmanImage();
+        }
+
+        function getRandomMovie() {
+            const randomIndex = Math.floor(Math.random() * movies.length);
+            return movies[randomIndex].toLowerCase();
+        }
+
+        function updateDisplay() {
+            document.getElementById('word-container').innerHTML = displayWord.join(' ');
+            document.getElementById('result').innerHTML = `Remaining Attempts: ${remainingAttempts}`;
+        }
+
+        function resetHangmanImage() {
+            document.getElementById('hangman-image').src = hangmanImages[0];
+            document.getElementById('hangman-image').style.display = "none";
+        }
+
+        function checkLetter() {
+            const userInput = document.getElementById('userInput').value.toLowerCase();
+
+            if (userInput.length === 1 && userInput.match(/[a-z]/i)) {
+                if (selectedMovie.includes(userInput)) {
+                for (let i = 0; i < selectedMovie.length; i++) {
+                    if (selectedMovie[i] === userInput) {
+                        displayWord[i] = userInput;
+                    }
+                }
+                } else {
+                    remainingAttempts--;
+                    updateHangmanImage();
+                }
+
+                if (displayWord.join('') === selectedMovie) {
+                    document.getElementById('result').innerHTML = 'Congratulations! You guessed the movie!';
+                } else if (remainingAttempts === 0) {
+                    document.getElementById('result').innerHTML = `Sorry, you ran out of attempts. The movie was "${selectedMovie}".`;
+                } else {
+                    updateDisplay();
+                }
+            } else {
+                alert('Please enter a valid single letter.');
+            }
+
+            document.getElementById('userInput').value = '';
+        }
+
+        function updateHangmanImage() {
+            const attemptsLeft = 6 - remainingAttempts;
+            document.getElementById('hangman-image').src = hangmanImages[attemptsLeft];
+            document.getElementById('hangman-image').style.display = "block";
+            updateDisplay();
+        }
+
+        startGame(); // Start the game on page load
+    </script>
+</body>
+</html>

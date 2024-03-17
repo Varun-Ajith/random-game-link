@@ -1,41 +1,121 @@
+<!-- SNAKE AND LADDER -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video-Game</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Snake Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        canvas {
+            border: 2px solid #fff;
+        }
+    </style>
 </head>
 <body>
-    <h1>For you!</h1>
-    <div id="playButton" class="round-button"></div>
-
-    <video id="myVideo" width="640" height="360" controls>
-        Your browser does not support the video tag.
-    </video>
-
+    <canvas id="gameCanvas" width="600" height="600"></canvas>
     <script>
-        document.getElementById('playButton').addEventListener('click', playRandomVideo);
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
 
-        function playRandomVideo() {
-            var videos = [
-                'video-1.mp4',
-                'video-2.mp4',
-                'video-3.mp4',
-                'video-4.mp4',
-                'video-5.mp4'
-            ];
+        const SCALE = 20;
+        const ROWS = canvas.height / SCALE;
+        const COLS = canvas.width / SCALE;
 
-            var randomIndex = Math.floor(Math.random() * videos.length);
-            var videoSrc = videos[randomIndex];
+        class Snake {
+            constructor() {
+                this.segments = [{ x: 0, y: 0 }];
+                this.dx = SCALE;
+                this.dy = 0;
+                this.food = { x: 0, y: 0 };
+                this.score = 0;
+            }
 
-            var video = document.getElementById('myVideo');
-            video.src = videoSrc;
-            video.load();
-            video.play();
+            update() {
+                this.move();
+                this.checkCollision();
+            }
 
-            video.style.display = 'block';
+            move() {
+                const head = { x: this.segments[0].x + this.dx, y: this.segments[0].y + this.dy };
+                this.segments.unshift(head);
+                if (head.x === this.food.x && head.y === this.food.y) {
+                    this.generateFood();
+                    this.score++;
+                } else {
+                    this.segments.pop();
+                }
+            }
+
+            checkCollision() {
+                const head = this.segments[0];
+                if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height || this.segments.some((seg, index) => index !== 0 && seg.x === head.x && seg.y === head.y)) {
+                    alert("Game Over! Your Score: " + this.score);
+                    this.reset();
+                }
+            }
+
+            reset() {
+                this.segments = [{ x: 0, y: 0 }];
+                this.dx = SCALE;
+                this.dy = 0;
+                this.score = 0;
+                this.generateFood();
+            }
+
+            generateFood() {
+                this.food.x = Math.floor(Math.random() * COLS) * SCALE;
+                this.food.y = Math.floor(Math.random() * ROWS) * SCALE;
+            }
+
+            draw() {
+                this.segments.forEach(segment => this.drawSegment(segment));
+                this.drawSegment(this.food, "#ff0000");
+            }
+
+            drawSegment(segment, color = "#ffffff") {
+                ctx.fillStyle = color;
+                ctx.fillRect(segment.x, segment.y, SCALE, SCALE);
+            }
         }
+
+        const snake = new Snake();
+
+        document.addEventListener("keydown", e => {
+            if (e.key === "ArrowUp" && snake.dy === 0) {
+                snake.dx = 0;
+                snake.dy = -SCALE;
+            } else if (e.key === "ArrowDown" && snake.dy === 0) {
+                snake.dx = 0;
+                snake.dy = SCALE;
+            } else if (e.key === "ArrowLeft" && snake.dx === 0) {
+                snake.dx = -SCALE;
+                snake.dy = 0;
+            } else if (e.key === "ArrowRight" && snake.dx === 0) {
+                snake.dx = SCALE;
+                snake.dy = 0;
+            }
+        });
+
+        function main() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            snake.update();
+            snake.draw();
+            setTimeout(main,120)
+        }
+
+        snake.generateFood();
+        main();
     </script>
 </body>
 </html>

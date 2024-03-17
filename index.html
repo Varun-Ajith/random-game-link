@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launcher</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Hi!</title>
 </head>
 <body>
-    <h1>Melcome!</h1>
-    <p>hehehe</p>
-    <button onclick="launchRandomGames()">Ivde</button>
-    <script src="script.js"></script>
+    <script>
+        // Define an array of game URLs
+        var games = [
+            "game1.html",
+            "game2.html",
+            "game3.html",
+            "game4.html",
+            "game5.html",
+            "game6.html",
+            "game8.html"
+        ];
+
+        // Function to select a random game URL
+        function getRandomGameUrl() {
+            var randomIndex = Math.floor(Math.random() * games.length);
+            return games[randomIndex];
+        }
+
+        // Redirect to a random game URL
+        window.location.href = getRandomGameUrl();
+
+    </script>
 </body>
 </html>

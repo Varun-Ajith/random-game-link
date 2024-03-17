@@ -1,56 +1,180 @@
+<!-- BOW AND ARROW  -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <title>Archer Game</title>
     <style>
         body {
             margin: 0;
-            overflow: hidden;
+            padding: 0;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            background-color: black;
-            color: white;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4em;
-            animation: scaleInOut 2s ease-in-out infinite alternate;
+            background-color: #f0f0f0;
         }
 
-        @keyframes scaleInOut {
-            0%, 100% {
-                transform: scale(0.8);
-                opacity: 0.5;
-            }
-            50% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* Media query for smaller screens (phones) */
-        @media (max-width: 768px) {
-            body {
-                font-size: 2.5em;
-            }
+        canvas {
+            border: 2px solid #000;
+            background-color: #fff;
         }
     </style>
 </head>
 <body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
     <script>
-        function updateClock() {
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
 
-            document.body.innerHTML = `<h1>${hours}:${minutes}:${seconds}</h1>`;
+        // Archer properties
+        const archerWidth = 20;
+        const archerHeight = 40;
+        let archerY = canvas.height / 2 - archerHeight / 2; // Initial position
+        let archerSpeed = 0; // Adjust as needed
+
+        // Arrow properties
+        const arrowWidth = 10;
+        const arrowHeight = 3;
+        const arrowSpeed = 10; // Adjust as needed
+        let arrows = [];
+
+        // Balloon properties
+        const balloonRadius = 20;
+        const balloonSpeed = 3; // Adjust as needed
+        let balloons = [];
+
+        // Score
+        let score = 0;
+
+        // Event listeners for key presses
+        document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener("keyup", handleKeyUp);
+
+        // Handle key down event
+        function handleKeyDown(event) {
+            if (event.key === "ArrowUp") {
+                archerSpeed = -5; // Adjust speed
+            } else if (event.key === "ArrowDown") {
+                archerSpeed = 5; // Adjust speed
+            } else if (event.key === " ") { // Space key for shooting arrows
+                if (arrows.length < 40) {
+                    shootArrow();
+                }
+            }
         }
 
-        setInterval(updateClock, 1000);
-        updateClock(); 
+        // Handle key up event
+        function handleKeyUp(event) {
+            if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+                archerSpeed = 0; // Stop archer movement
+            }
+        }
+
+        // Shoot an arrow
+        function shootArrow() {
+            let arrow = {
+                x: archerWidth,
+                y: archerY + archerHeight / 2 - arrowHeight / 2,
+                dx: arrowSpeed,
+                dy: 0
+            };
+            arrows.push(arrow);
+        }
+
+        // Generate balloons
+        function generateBalloons() {
+            setInterval(() => {
+                if (balloons.length < 25) {
+                    let balloon = {
+                        x: Math.random() * (canvas.width - 2 * balloonRadius) + balloonRadius, // Random x position
+                        y: -balloonRadius, // Start from above the canvas
+                        dx: 0, // No horizontal movement
+                        dy: balloonSpeed // Move downwards
+                    };
+                    balloons.push(balloon);
+                }
+            }, 2000); // Adjust balloon generation rate
+        }
+
+        // Update game state
+        function update() {
+            // Move archer
+            archerY += archerSpeed;
+
+            // Move arrows
+            arrows.forEach(arrow => {
+                arrow.x += arrow.dx;
+                arrow.y += arrow.dy;
+            });
+
+            // Move balloons and check for collisions
+            balloons.forEach((balloon, balloonIndex) => {
+                balloon.x += balloon.dx;
+                balloon.y += balloon.dy;
+
+                // Check collision with arrows
+                arrows.forEach((arrow, arrowIndex) => {
+                    if (
+                        balloon.x - balloonRadius < arrow.x + arrowWidth &&
+                        balloon.x + balloonRadius > arrow.x &&
+                        balloon.y - balloonRadius < arrow.y + arrowHeight &&
+                        balloon.y + balloonRadius > arrow.y
+                    ) {
+                        // Remove arrow and balloon
+                        arrows.splice(arrowIndex, 1);
+                        balloons.splice(balloonIndex, 1);
+                        score++;
+                    }
+                });
+            });
+        }
+
+        // Draw game elements
+        function draw() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw archer
+            ctx.fillStyle = "#000";
+            ctx.fillRect(0, archerY, archerWidth, archerHeight);
+            
+            // Draw arrows
+            arrows.forEach(arrow => {
+                ctx.fillRect(arrow.x, arrow.y, arrowWidth, arrowHeight);
+            });
+
+            // Draw balloons
+            balloons.forEach(balloon => {
+                ctx.beginPath();
+                ctx.arc(balloon.x, balloon.y, balloonRadius, 0, Math.PI * 2);
+                ctx.fillStyle = "red";
+                ctx.fill();
+                ctx.closePath();
+            });
+
+            // Draw score
+            ctx.fillStyle = "#000";
+            ctx.font = "20px Arial";
+            ctx.fillText("Score: " + score, 10, 30);
+            ctx.fillText("Arrows Left: " + (40 - arrows.length), 10, 60);
+            ctx.fillText("Balloons Left: " + (25 - balloons.length), 10, 90);
+        }
+
+        // Main game loop
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Start the game loop
+        gameLoop();
+
+        // Generate balloons
+        generateBalloons();
     </script>
 </body>
 </html>

@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop the balloon</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Video Player</title>
 </head>
 <body>
+    <video id="randomVideo" controls autoplay>
+        <source src="" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <script>
-        function createBalloon() {
-            var balloon = document.createElement('div');
-            balloon.className = 'balloon';
-            balloon.style.left = Math.random() * (window.innerWidth-50) +'px';
-            balloon.style.top = Math.random() * (window.innerHeight-70) + 'px';
-            balloon.onclick = function() {
-                popBalloon(balloon);
-            };
-            document.body.appendChild(balloon);
+        const videos = [
+            "video-1.mp4",
+            "video-2.mp4",
+            "video-3.mp4",
+            "video-4.mp4",
+            "video-5.mp4"
+        ];
+
+        function playRandomVideo() {
+            const randomIndex = Math.floor(Math.random() * videos.length);
+            const randomVideo = videos[randomIndex];
+            const videoElement = document.getElementById("randomVideo");
+            videoElement.src = randomVideo;
+            videoElement.load();
+            videoElement.play(); // Autoplay the video
         }
 
-        function popBalloon(balloon) {
-            balloon.style.display = 'none';
-            setTimeout(function() {
-                balloon.style.left = Math.random() * (window.innerWidth-50) +'px';
-                balloon.style.top = Math.random() * (window.innerHeight-70) + 'px';
-                balloon.style.display = 'block';
-            }, 1000);
-        }
-        setInterval(createBalloon, 1000);
+        playRandomVideo();
     </script>
 </body>
 </html>

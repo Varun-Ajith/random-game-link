@@ -64,7 +64,7 @@
         }
 
         function updateDisplay() {
-            document.getElementById('word-container').innerHTML = displayWord.join(' ');
+            document.getElementById('word-container').innerHTML = displayWord.join('&nbsp;');
             document.getElementById('result').innerHTML = `Remaining Attempts: ${remainingAttempts}`;
         }
 

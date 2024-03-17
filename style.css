@@ -311,6 +311,20 @@ body {
     color: #333;
   }
 
+/* Connect four dots */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+canvas {
+    border: 2px solid black;
+}
+
 /* Keyframes */
 
 @keyframes vortexAnimation {
